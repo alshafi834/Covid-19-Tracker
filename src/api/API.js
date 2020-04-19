@@ -66,8 +66,6 @@ export const getMapDatas = async () => {
       });
       //countryDetailsData.push(data);
     });
-
-    console.log(countryDetailsData);
     return countryDetailsData;
     //return countries.map((country) => country.name);
   } catch (error) {

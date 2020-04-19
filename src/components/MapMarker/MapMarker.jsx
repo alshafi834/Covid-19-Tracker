@@ -4,7 +4,6 @@ import { Marker, Popup } from "react-map-gl";
 import styles from "./MapMarker.module.css";
 
 const MapMarker = (props) => {
-  console.log(props.logEntries);
   return (
     <div>
       {props.logEntries.map((entry) => (
