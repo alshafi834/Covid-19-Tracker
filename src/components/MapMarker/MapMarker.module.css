@@ -1,0 +1,8 @@
+.marker {
+  transform: translate(-50%, -100%);
+  stroke: #f21d48;
+  cursor: pointer;
+}
+.popup {
+  z-index: 999;
+}

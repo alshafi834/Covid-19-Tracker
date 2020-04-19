@@ -1,26 +1,45 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import Card from "./components/Cards/Cards";
+import CountryPicker from "./components/CountryPicker/CountryPicker";
+import Charts from "./components/Charts/Charts";
+import Map from "./components/Map/Map";
+import styles from "./App.module.css";
 
-function App() {
+import logoImage from "./images/image.png";
+
+import { fetchData } from "./api/API";
+
+const App = () => {
+  const [covidDatas, setCovidDatas] = useState({});
+
+  const getCovidData = async () => {
+    try {
+      const data = await fetchData();
+      setCovidDatas(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  //console.log(covidDatas);
+
+  useEffect(() => {
+    getCovidData();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={styles.container}>
+      <img src={logoImage} alt="Covid-19" className={styles.logo} />
+
+      {covidDatas.confirmed ? <Card covidDatas={covidDatas} /> : null}
+
+      <Charts />
+
+      <CountryPicker />
+
+      <Map />
     </div>
   );
-}
+};
 
 export default App;
